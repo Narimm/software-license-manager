@@ -120,7 +120,8 @@
              basedir="/${build.dir}"
         />
     </target>
-    <target name="release.init">
+    <target name="release.init" if="release">
+        <input message="Enter next development version (Current: ${version.current}) :" addproperty="version.next" defaultvalue="${version.current}" />
         <fail unless="version.next"/>
         <echo message="Current Release version is: ${version.current}"/>
         <exec command="node package-update.js ${version.current}"/>
@@ -175,12 +176,9 @@
             </args>
         </git>
     </target>
-    <target name="default" depends="make.dir, make, info.generate, zip">
+    <target name="build" depends="make.dir, make, info.generate, zip">
         <echo message="Build Version ${plugin.version} Complete find the zip in ${dist.dir}/${plugin.slug}.zip" level="info"/>
     </target>
-    <target name="release.update.2">
-
-    </target>
-    <target name="release" depends="release.init, release.branch, default, release.commit-branch, release.update,release.finalize" />
+    <target name="default" depends="release.init, release.branch, build, release.commit-branch, release.update,release.finalize" />
 </project>
 

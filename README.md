@@ -29,6 +29,28 @@ Contributions, issues and feature requests are welcome!
 
 Feel free to check [issues page](https://github.com/michelve/software-license-manager/issues).
 
+## Building
+
+Requirements
+- Java
+- Apache Ant
+- Nodejs
+
+Build this project by running from the home directory
+
+```shell
+ant default
+```
+to dryrun a release
+```shell
+ant default -Drelease=true -DdryRun=true
+```
+and to release
+```shell
+ant -Drelease=true  default
+```
+
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
